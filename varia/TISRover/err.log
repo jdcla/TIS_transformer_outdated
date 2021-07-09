@@ -1,0 +1,3 @@
+nohup: ignoring input and appending output to 'nohup.out'
+/home/jimc/workspace/TIS_transformer/varia/TISRover/TISRover_eval.py:82: DeprecationWarning: tostring() is deprecated. Use tobytes() instead.
+  return dna_str.tostring().decode('utf-8')

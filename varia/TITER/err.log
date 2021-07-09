@@ -1,0 +1,15 @@
+nohup: ignoring input and appending output to 'nohup.out'
+Can not use cuDNN on context None: cannot compile with cuDNN. We got this error:
+b'/tmp/try_flags_kpqpijoz.c:4:10: fatal error: cudnn.h: No such file or directory\n #include <cudnn.h>\n          ^~~~~~~~~\ncompilation terminated.\n'
+Mapped name None to device cuda2: GeForce RTX 2080 Ti (0000:23:00.0)
+Using Theano backend.
+TITER_eval.py:157: UserWarning: Update your `Conv1D` call to the Keras 2 API: `Conv1D(activation="relu", input_shape=(203, 8), filters=128, kernel_size=3, strides=1, padding="valid", kernel_constraint=<keras.con...)`
+  model.add(Convolution1D(nb_filter=128,
+TITER_eval.py:165: UserWarning: Update your `MaxPooling1D` call to the Keras 2 API: `MaxPooling1D(pool_size=3)`
+  model.add(MaxPooling1D(pool_length=3))
+TITER_eval.py:166: UserWarning: Update your `Dropout` call to the Keras 2 API: `Dropout(rate=0.21370950...)`
+  model.add(Dropout(p=0.21370950078747658))
+TITER_eval.py:167: UserWarning: Update your `LSTM` call to the Keras 2 API: `LSTM(return_sequences=True, units=256)`
+  model.add(LSTM(output_dim=256,
+TITER_eval.py:169: UserWarning: Update your `Dropout` call to the Keras 2 API: `Dropout(rate=0.72380913...)`
+  model.add(Dropout(p=0.7238091317104384))
