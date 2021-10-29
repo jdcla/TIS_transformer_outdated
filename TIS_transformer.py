@@ -142,8 +142,7 @@ class ParseArgs(object):
             parser.add_argument('transfer_checkpoint', type=str, metavar='checkpoint',
                                 help="path to checkpoint of trained model")
             parser.add_argument('--save_path', type=str, metavar='save_path', default='results.npy',
-                    help="file in data_path folder used for testing")
-            
+                    help="numpy save file path")
             dl_parse = parser.add_argument_group('DataLoader', 'data loader arguments')
             dl_parse.add_argument('--max_seq_len', type=int, default=25000,
                                 help="maximum sequence length of transcripts")
@@ -177,7 +176,6 @@ def prep_input(x, device):
 
 
 def mlm_train(args):
-    
     mlm = TranscriptMLM(args.mask_frac, args.rand_frac, args.lr, args.decay_rate, args.num_tokens, 
                         args.max_seq_len, args.dim, args.depth, args.heads, args.dim_head, False, 
                         args.nb_features, args.feature_redraw_interval, args.generalized_attention,
@@ -196,9 +194,7 @@ def mlm_train(args):
     
     trainer.test(mlm, test_dataloaders=tr_loader.test_dataloader())
 
-
 def train(args):
-    
     tis_tr = TranscriptTIS(args.lr, args.decay_rate, args.num_tokens, args.max_seq_len,
                         args.dim, args.depth, args.heads, args.dim_head, False, args.nb_features, 
                         args.feature_redraw_interval, args.generalized_attention, args.kernel_fn, 
@@ -241,6 +237,7 @@ def impute(args):
         x_data = [DNA2vec(seq) for seq in tr_seqs if len(seq) < args.max_seq_len]
     else:
         assert len(args.input) < args.max_seq_len, f'input is longer than maximum input length: {args.max_seq_len}'
+        print_output = True
         x_data = [DNA2vec(args.input.upper())]
         tr_ids = ['NaN']
     
@@ -257,7 +254,7 @@ def impute(args):
     else:
         results = np.array([tr_ids[0], x_data[0], out_data[0]], dtype=object)
     np.save(args.save_path, results)
-
+    print(f'\nResults saved to {args.save_path}')
 
 if __name__ == "__main__":
     args = ParseArgs()

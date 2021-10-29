@@ -23,25 +23,26 @@ Annotations are performed by a machine learning model following a methodology si
 
 The model architecture is based on that of the [Performer](https://arxiv.org/abs/2009.14794), which allows the use of longer input sequences.
 
-## Benchmark <a name="pretraining"></a>
+## Benchmark <a name="benchmark"></a>
 
 The tool has been compared to similar approaches applying TIS imputation based on the transcript nucleotide sequence. More details about the benchmarking approach are listed in the [article](www.google.com). The scripts to obtain the scores for TISRover and TITER are deposited in `varia/`
 
 <details>
 
-**Only ATG positions**
-
-| Method |  ROC AUC | PR AUC |
-| - |  - | - |
-| [TIS transformer](https://www.google.com) |  99.63 | 83.85 | 
-| [TISRover](https://www.inderscience.com/info/inarticle.php?artid=94781) |  95.50 | 42.91 |
-
 **All positions**
 
 | Method |  ROC AUC | PR AUC |
 | - |  - | - |
-| [TIS transformer](https://www.google.com) |  99.99 | 86.00 | 
-| [TITER](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5870772/) |  99.15 | 1.65 | 
+| [TIS transformer]() |  99.99 | 85.63 | 
+
+**Only ATG positions**
+
+| Method |  ROC AUC | PR AUC |
+| - |  - | - |
+| [TIS transformer]() |  99.63 | 83.59 | 
+| [TISRover](https://www.inderscience.com/info/inarticle.php?artid=94781) |  97.20 | 43.32 |
+| [TITER](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5870772/) |  61.99 | 1.69 | 
+
 </details>
 
 ## Re-annotation of the human proteome <a name="human"></a>
@@ -114,7 +115,7 @@ positional arguments:
     
 # Example
     
-python TIS_transformer.py train 'data/GRCh38p13/' 'chr11.npy' 'chr4.npy' --max_epochs 70 --transfer_checkpoint lightning_logs/mlm_model/version_0/checkpoints/epoch=43-step=660110.ckpt --name tis_chr4 --gpu 1 
+python TIS_transformer.py train 'data/GRCh38p13/' 'chr11.npy' 'chr4.npy' --max_epochs 70 --transfer_checkpoint lightning_logs/mlm_model/version_0/checkpoints/mlm_model.ckpt --name tis_chr4 --gpu 1 
 
 ```
 ---
@@ -138,11 +139,11 @@ positional arguments:
 
 # Example
 
-python TIS_transformer.py impute AAAAACCTTTT lightning_logs/tis_model/version_0/checkpoints/epoch\=69-step\=1050218.ckpt --gpu 1
+python TIS_transformer.py impute AAAAACCTTTT lightning_logs/tis_chr4/version_0/checkpoints/tis_chr4.ckpt --gpu 1
     
-python TIS_transformer.py impute example.fa lightning_logs/tis_model/version_0/checkpoints/epoch\=69-step\=1050218.ckpt --gpu 1
+python TIS_transformer.py impute example.fa lightning_logs/tis_chr4/version_0/checkpoints/tis_chr4.ckpt --gpu 1
     
-python TIS_transformer.py impute data/GRCh38p13/chr4.npy lightning_logs/tis_model/version_0/checkpoints/epoch\=69-step\=1050218.ckpt --gpu 1
+python TIS_transformer.py impute data/GRCh38p13/chr4.npy lightning_logs/tis_chr4/version_0/checkpoints/tis_chr4.ckpt --gpu 1
 ```
 ---
 
@@ -184,6 +185,7 @@ Model:
   --heads int           number of attention heads in every layer (default: 6)
   --dim_head int        dimension of the attention head matrices (default: 16)
   --nb_features int     number of random features, if not set, will default to (d * log(d)),where d is the dimension
+                        of each head (default: 80)
                         of each head (default: 80)
   --feature_redraw_interval int
                         how frequently to redraw the projection matrix (default: 100)
@@ -413,7 +415,6 @@ array(['>ENST00000410304',
               1.4648888e-10, 1.4948037e-07, 2.3879443e-07, 1.6367457e-08,
               1.9375465e-08, 3.3595885e-08, 4.1618881e-10, 6.3614699e-12,
               4.1953702e-10, 1.3611480e-08, 2.0185058e-09, 8.1397658e-08,
-              2.0779534e-09, 1.2242296e-09, 3.2409246e-09, 4.7745752e-11,
               2.3339116e-07, 4.8850779e-08, 1.6549968e-12, 1.2499275e-11,
               8.3455109e-10, 1.5468280e-12, 3.5863316e-08, 1.2135585e-09,
               4.4234839e-14, 2.0041482e-11, 4.0546926e-09, 4.8796110e-12,
@@ -431,6 +432,8 @@ array(['>ENST00000410304',
 ---
 
 </details>
+
+#
 
 ## Citation <a name="citation"></a>
        
