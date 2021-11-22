@@ -1,6 +1,6 @@
 # Model predictions
 
-## `chr*.npy`
+## `chr*.npy` (TODO)
  
 The model returns predictions for every nucleotide on the transcript, saved as a `.npy` file. For each transcript, the array lists the transcript label, input sequence and model outputs. Predictions on each chromosome are obtained by using the other chromosomes as train and validation data.
  
@@ -49,9 +49,9 @@ array(['>ENST00000410304',
 
 
 
-## `master\_table\_top\_hits.csv`
+## `homo_sapiens_proteome.csv`
 
-Additional information was curated for the top scoring positions of each chromosome. For each chromosome, the top `k*4` predictions are included in `master_table_top_hits.csv`, where k is the number of translation initiation sites annotated by the Ensembl annotations (v102).
+Additional information was curated for the top scoring positions of each chromosome. For each chromosome, the top `k*3` predictions are included, where k is the number of translation initiation sites annotated by the Ensembl annotations (v102).
 
 <details>
 
