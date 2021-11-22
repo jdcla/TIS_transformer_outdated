@@ -16,7 +16,7 @@
 </details>
 
 ## About <a name="about"></a>
-The TIS transformer is created to annotate translation initiation sites on transcripts based on its nucleotide sequences. The repository holds the code and data to train the model on the human genome. The model presented in [this paper](https://www.google.com) can be directly used for the annotation of transcripts on humans.
+The TIS transformer is created to annotate translation initiation sites on transcripts based on its nucleotide sequences. The repository holds the code and data to train the model on the human genome. The model presented in [this paper](https://www.biorxiv.org/content/10.1101/2021.11.18.468957v1) can be directly used for the annotation of transcripts on humans. This work was used to re-annotate the human proteome. Model outputs are given in `outputs/homo_sapiens_proteome.csv.gz`.
 
 ## Methodology <a name="methodology"></a>
 Annotations are performed by a machine learning model following a methodology similar to those defined for natural language modelling tasks. Ensemble annotations have been used to obtain transcripts and TIS annotations. The model processes the full transcript sequence to impute the presense of TIS at each position on the transcript. 
@@ -25,7 +25,7 @@ The model architecture is based on that of the [Performer](https://arxiv.org/abs
 
 ## Benchmark <a name="benchmark"></a>
 
-The tool has been compared to similar approaches applying TIS imputation based on the transcript nucleotide sequence. More details about the benchmarking approach are listed in the [article](www.google.com). The scripts to obtain the scores for TISRover and TITER are deposited in `varia/`
+The tool has been compared to similar approaches applying TIS imputation based on the transcript nucleotide sequence. More details about the benchmarking approach are listed in the [article](https://www.biorxiv.org/content/10.1101/2021.11.18.468957v1). The scripts to obtain the scores for TISRover and TITER are deposited in `varia/`
 
 <details>
 
@@ -47,7 +47,7 @@ The tool has been compared to similar approaches applying TIS imputation based o
 
 ## Re-annotation of the human proteome <a name="human"></a>
 
-Using this method, the proteome of the complete human genome has been re-annotated by applying a cross-validation scheme. Annotations are performed on chromosomes not used to train the model. ([Biobix](), [Google drive]())
+Using this method, the proteome of the complete human genome has been re-annotated by training multiple models. Annotations are performed on chromosomes excluded from the training process. Predictions are featured in `outputs/homo_sapiens_proteome.csv.gz`. For each chromosome, the top `3*k` predictions are given, where `k` denotes the number of translation initiation sites featured by the Ensembl annotations. More information about the column data is given in `outputs/README.md`.  
 
 ## User guide <a name="userguide"></a>
 
