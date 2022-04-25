@@ -16,7 +16,12 @@
 </details>
 
 ## About <a name="about"></a>
-The TIS transformer is created to annotate translation initiation sites on transcripts based on its nucleotide sequences. The repository holds the code and data to train the model on the human genome. The model presented in [this paper](https://www.biorxiv.org/content/10.1101/2021.11.18.468957v1) can be directly used for the annotation of transcripts on humans. This work was used to re-annotate the human proteome. Model outputs are given in `outputs/homo_sapiens_proteome.csv.gz`.
+The TIS transformer is created to annotate translation initiation sites on transcripts based on its nucleotide sequences. The repository holds the code and data to train the model on the human genome. The model presented in [this paper](https://www.biorxiv.org/content/10.1101/2021.11.18.468957v1) can be directly used for the annotation of transcripts on humans. This work was used to re-annotate the human proteome. Model outputs are given in `outputs/homo_sapiens_proteome.csv.gz`. 
+
+
+For quick access to the model annotations on the human chromosome, we refer to our streamlit app:
+
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](http://jdcla.ugent.be) 
 
 ## Methodology <a name="methodology"></a>
 Annotations are performed by a machine learning model following a methodology similar to those defined for natural language modelling tasks. Ensemble annotations have been used to obtain transcripts and TIS annotations. The model processes the full transcript sequence to impute the presense of TIS at each position on the transcript. 
